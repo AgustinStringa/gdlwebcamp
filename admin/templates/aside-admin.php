@@ -67,13 +67,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista-categorias.php" class="nav-link">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Ver categorías</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear-categoria.php" class="nav-link">
                   <i class="fas fa-calendar-plus nav-icon"></i>
                   <p>Agregar categoría</p>
                 </a>

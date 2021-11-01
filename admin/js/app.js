@@ -167,7 +167,7 @@ $(document).ready(function () {
                         processData: false,
                         contentType: false,
                         beforeSend: function (asd) {
-                            //console.log(asd);
+                            console.log(asd);
                         },
                         success: function (datosEliminacion) {
                             console.log(datosEliminacion);
@@ -178,6 +178,9 @@ $(document).ready(function () {
                                     // $([data-id="datosEliminacion.id-eliminado"]).remove()
                                 }
                                 if (tipo == 'evento') {
+                                    self.parentElement.parentElement.remove()
+                                }
+                                if (tipo == 'categorias') {
                                     self.parentElement.parentElement.remove()
                                 }
 
@@ -380,5 +383,75 @@ $(document).ready(function () {
     /***
     * =================EVENTOS=================
     */
+
+
+
+
+
+    const asd = document.querySelectorAll('.editar_registro_categoria');
+
+    asd.forEach(a => {
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+            const self = a;
+            const padre = self.parentElement.parentElement;
+
+            for (elemento of padre.children) {
+
+                if (elemento.classList.contains('dtr-control')) {
+                    const hijo_obj = elemento;
+                    const id_editable = this.getAttribute('id-cat');
+
+                    hijo_obj.innerHTML = `<td>
+                    <input type="text" placeholder="inserte el nuevo nombre">
+                    </td>`;
+                    hijo_obj.firstElementChild.focus();
+
+                    hijo_obj.firstElementChild.addEventListener("keypress", function (e) {
+                        if (e.key == "Enter") {
+                            const nuevoNombre = this.value;
+
+                            const datosEditCat = new FormData();
+                            datosEditCat.append('editar-categoria', '1');
+                            datosEditCat.append('nuevo-nombre', nuevoNombre);
+                            datosEditCat.append('id-editable', id_editable);
+
+                            $.ajax({
+                                type: 'POST',
+                                data: datosEditCat,
+                                url: 'modelo-categorias.php',
+                                dataType: 'json',
+                                processData: false,  // tell jQuery not to process the data
+                                contentType: false,   // tell jQuery not to set contentType,
+                                success: function (datosRecibidos) {
+                                    console.log(datosRecibidos);
+                                    if (datosRecibidos.respuesta == 'exito') {
+                                        hijo_obj.textContent = `${nuevoNombre}`
+                                        Swal.fire(
+                                            'Categoría modificada',
+                                            `Ahora la categoría se llama ${datosRecibidos.nuevo_nombre}`,
+                                            'success'
+                                        )
+                                    } else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'No se ha podido modificar el evento, inténtalo nuevamente'
+                                        });
+                                    }
+                                },
+                                beforeSend: function (data) {
+                                    //console.log(data)
+                                },
+                                error: function (data) {
+                                    //console.log(data)
+                                }
+                            })
+                        }
+                    });
+                }
+            }
+        })
+    })
 
 })
