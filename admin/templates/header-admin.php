@@ -8,7 +8,6 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <!-- <link rel="stylesheet" href="css/all.min.css"> -->
   <!-- Theme style -->
   <link rel="stylesheet" href="css/adminlte.min.css">
@@ -24,6 +23,13 @@
     echo '<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">';
     echo '<link rel="stylesheet" href="css/buttons.bootstrap4.min.css">';
     echo '<link rel="stylesheet" href="css/responsive.bootstrap4.min.css">';
+  }
+
+  if ($cadena == 'crear-categoria.php') {
+    echo '<link rel="stylesheet" href="css/fontawesome-iconpicker.css">';
+
+    // echo '
+    // <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">';
   }
   ?>
 

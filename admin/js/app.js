@@ -385,9 +385,40 @@ $(document).ready(function () {
     */
 
 
+    /***
+    * =================CATEGORIAS=================
+    */
+
+    //CREANDO CATEGORIA
+
+    //ADAPTANDO FONT-AWESOME ICON-PICKER
+    if (document.querySelector('.icp-auto')) {
+        $('.icp-auto').iconpicker(); //inicializando 
+
+        const iconos = document.querySelectorAll('.iconpicker-item');
+        for (icon of iconos) {
+            icon.addEventListener('click', function (e) {
+                e.preventDefault(); //prevenir uso del enlace y alteracion de la url
+            })
+        }
+
+        const padre_icon = document.querySelector('.icp-auto').parentElement.parentElement;
+        for (hijo of padre_icon.children) {
+            hijo.classList.remove('fade'); //eliminando clase conflictiva fade
+        }
+    }
+
+    //creando nueva categoria
+    document.querySelector('#crear-categoria').addEventListener('submit', crearCategoria);
+
+    function crearCategoria(e) {
+        e.preventDefault();
+        alert();
+        console.log($(this).serializeArray());
+    }
 
 
-
+    //editando nombre desde pagina lsitas
     const asd = document.querySelectorAll('.editar_registro_categoria');
 
     asd.forEach(a => {
@@ -452,6 +483,13 @@ $(document).ready(function () {
                 }
             }
         })
-    })
+
+    });
+
+
+    //LA ELIMINACION SE REALIZA DESDE EL METODO ELIMINAR REGISTRO
+    /***
+    * =================CATEGORIAS=================
+    */
 
 })
