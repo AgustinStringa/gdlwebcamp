@@ -409,82 +409,122 @@ $(document).ready(function () {
     }
 
     //creando nueva categoria
-    document.querySelector('#crear-categoria').addEventListener('submit', crearCategoria);
+    if (document.querySelector('#crear-categoria')) {
+        document.querySelector('#crear-categoria').addEventListener('submit', crearCategoria);
+    }
 
     function crearCategoria(e) {
         e.preventDefault();
-        alert();
-        console.log($(this).serializeArray());
+        const dataUpdateCat = $(this).serializeArray();
+        $.ajax({
+            type: $(this).attr('method'),
+            data: dataUpdateCat,
+            url: $(this).attr('action'),
+            dataType: 'json',
+            success: function (datosRecibidos) {
+                console.log(datosRecibidos);
+
+                if (datosRecibidos.respuesta == 'exito') {
+                    Swal.fire(
+                        'Categoría creada correctamente',
+                        `La categoria "${datosRecibidos.nombre}" se guardó exitosamente`,
+                        'success'
+                    )
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se ha podido crear la categoría, inténtalo nuevamente'
+                    });
+                }
+            },
+            beforeSend: function (data) {
+                //console.log(data)
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+        //ajax
+    }
+
+    //editanto categoria desde formulario
+    if (document.querySelector('#editar-categoria')) {
+        document.querySelector('#editar-categoria').addEventListener('submit', editarCategoria);
+    }
+
+    function editarCategoria(e) {
+        e.preventDefault();
     }
 
 
-    //editando nombre desde pagina lsitas
-    const asd = document.querySelectorAll('.editar_registro_categoria');
+    //editando nombre de categoria desde pagina lsitas
+    //const asd = document.querySelectorAll('.editar_registro_categoria');
 
-    asd.forEach(a => {
-        a.addEventListener('click', function (e) {
-            e.preventDefault();
-            const self = a;
-            const padre = self.parentElement.parentElement;
-
-            for (elemento of padre.children) {
-
-                if (elemento.classList.contains('dtr-control')) {
-                    const hijo_obj = elemento;
-                    const id_editable = this.getAttribute('id-cat');
-
-                    hijo_obj.innerHTML = `<td>
-                    <input type="text" placeholder="inserte el nuevo nombre">
-                    </td>`;
-                    hijo_obj.firstElementChild.focus();
-
-                    hijo_obj.firstElementChild.addEventListener("keypress", function (e) {
-                        if (e.key == "Enter") {
-                            const nuevoNombre = this.value;
-
-                            const datosEditCat = new FormData();
-                            datosEditCat.append('editar-categoria', '1');
-                            datosEditCat.append('nuevo-nombre', nuevoNombre);
-                            datosEditCat.append('id-editable', id_editable);
-
-                            $.ajax({
-                                type: 'POST',
-                                data: datosEditCat,
-                                url: 'modelo-categorias.php',
-                                dataType: 'json',
-                                processData: false,  // tell jQuery not to process the data
-                                contentType: false,   // tell jQuery not to set contentType,
-                                success: function (datosRecibidos) {
-                                    console.log(datosRecibidos);
-                                    if (datosRecibidos.respuesta == 'exito') {
-                                        hijo_obj.textContent = `${nuevoNombre}`
-                                        Swal.fire(
-                                            'Categoría modificada',
-                                            `Ahora la categoría se llama ${datosRecibidos.nuevo_nombre}`,
-                                            'success'
-                                        )
-                                    } else {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Oops...',
-                                            text: 'No se ha podido modificar el evento, inténtalo nuevamente'
-                                        });
+    /*    asd.forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                const self = a;
+                const tr_padre = self.parentElement.parentElement;
+    
+                for (elemento of tr_padre.children) {
+    
+                    if (elemento.classList.contains('dtr-control')) {
+                        const hijo_obj = elemento;
+                        const id_editable = this.getAttribute('id-cat');
+    
+                        hijo_obj.innerHTML = `<td>
+                        <input type="text" placeholder="inserte el nuevo nombre">
+                        </td>`;
+                        hijo_obj.firstElementChild.focus();
+    
+                        hijo_obj.firstElementChild.addEventListener("keypress", function (e) {
+                            if (e.key == "Enter") {
+                                const nuevoNombre = this.value;
+    
+                                const datosEditCat = new FormData();
+                                datosEditCat.append('editar-categoria', '1');
+                                datosEditCat.append('nuevo-nombre', nuevoNombre);
+                                datosEditCat.append('id-editable', id_editable);
+    
+                                $.ajax({
+                                    type: 'POST',
+                                    data: datosEditCat,
+                                    url: 'modelo-categorias.php',
+                                    dataType: 'json',
+                                    processData: false,  // tell jQuery not to process the data
+                                    contentType: false,   // tell jQuery not to set contentType,
+                                    success: function (datosRecibidos) {
+                                        console.log(datosRecibidos);
+                                        if (datosRecibidos.respuesta == 'exito') {
+                                            hijo_obj.textContent = `${nuevoNombre}`
+                                            Swal.fire(
+                                                'Categoría modificada',
+                                                `Ahora la categoría se llama ${datosRecibidos.nuevo_nombre}`,
+                                                'success'
+                                            )
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'No se ha podido modificar el evento, inténtalo nuevamente'
+                                            });
+                                        }
+                                    },
+                                    beforeSend: function (data) {
+                                        //console.log(data)
+                                    },
+                                    error: function (data) {
+                                        //console.log(data)
                                     }
-                                },
-                                beforeSend: function (data) {
-                                    //console.log(data)
-                                },
-                                error: function (data) {
-                                    //console.log(data)
-                                }
-                            })
-                        }
-                    });
+                                })
+                            }
+                        });
+                    }
                 }
-            }
-        })
-
-    });
+            })
+    
+        });*/
 
 
     //LA ELIMINACION SE REALIZA DESDE EL METODO ELIMINAR REGISTRO

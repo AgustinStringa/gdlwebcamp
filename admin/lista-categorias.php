@@ -67,7 +67,7 @@
 
                                             <?php if ($_SESSION["nivel"] == 1) { ?>
                                                 <td>
-                                                    <a class="btn btn-info editar_registro_categoria" id-cat="<?php echo $categoria['id_categoria']; ?>" href="#">
+                                                    <a class="btn btn-info editar_registro_categoria" id-cat="<?php echo $categoria['id_categoria']; ?>" href="editar-categoria.php?id-editable=<?php echo $categoria['id_categoria']; ?>">
                                                         <i class="far fa-edit"></i>
                                                     </a>
                                                     <a class="btn btn-danger borrar_registro" href="#" data-tipo="categorias" data_id="<?php echo $categoria['id_categoria']; ?>">

@@ -64,3 +64,40 @@ if (isset($_POST['id-deletable'])) {
     die(json_encode($respuesta));
 }
 ?>
+
+<?php
+if (isset($_POST['agregar-categoria'])) {
+    $nombre_cat = $_POST['nombre-cat'];
+    $icono_cat = $_POST['icono-categoria'];
+
+
+    try {
+        $stmt = $conn->prepare('INSERT INTO categoria_evento (cat_evento, icono) VALUES (?, ?)');
+        $stmt->bind_param('ss', $nombre_cat, $icono_cat);
+        $stmt->execute();
+
+        $mod = $stmt->affected_rows;
+
+        if ($mod > 0) {
+            $respuesta = array(
+                'respuesta' => 'exito',
+                'modificados' => $mod,
+                'nombre' => $nombre_cat
+            );
+        } else {
+            $respuesta = array(
+                'respuesta' => 'incorrecto',
+                'mod' => $mod,
+                'stmt' => $stmt
+            );
+        }
+    } catch (Exception $e) {
+        $respuesta = array(
+            'respuesta' => 'incorrecto',
+            'error' => $e->getMessage()
+        );
+    }
+
+    die(json_encode($respuesta));
+}
+?>
