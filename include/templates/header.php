@@ -6,7 +6,7 @@
     <title>GDLWEBCAMP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    
+
 
     <meta property="og:title" content="">
     <meta property="og:type" content="">
@@ -19,16 +19,27 @@
 
 
     <!--font awesome-->
-    <script src="https://kit.fontawesome.com/1fdb1d3073.js" crossorigin="anonymous"></script>   
+    <!-- <script src="https://kit.fontawesome.com/1fdb1d3073.js" crossorigin="anonymous"></script> -->
+    <!--font awesome kit mio-->
+    <script src="https://kit.fontawesome.com/d063ecd26a.js" crossorigin="anonymous"></script>
+
 
     <!--introduccion leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
     <link rel="stylesheet" href="css/normalize.css">
 
-        <link rel="stylesheet" href="css/all.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com"> 
+
+    <!--
+
+    codigo de archivos de fontawesome comentado
+    actualmente se usa mi kit de archivos, el script de arriba
+    -->
+    <!-- <link rel="stylesheet" href="css/all.css"> -->
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+    <!-- <link rel="stylesheet" href="css/fontawesome.min.css">  -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+
 
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,27 +48,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="css/fontawesome.min.css"> 
 
 
-    <?php 
-    
-        $archivo = basename($_SERVER['PHP_SELF']);
-        $pagina = str_replace(".php","", $archivo);
-        
 
-        if($pagina == 'invitados' || $pagina == 'index'){
-            echo '<link rel="stylesheet" href="css/colorbox.css">';
-        } else if ($pagina == 'conferencia'){
-            echo '<link rel="stylesheet" href="css/lightbox.css">';
-        }
+    <?php
 
-        //  echo $archivo . "<br>";
-        //  echo $pagina;
+    $archivo = basename($_SERVER['PHP_SELF']);
+    $pagina = str_replace(".php", "", $archivo);
+
+
+    if ($pagina == 'invitados' || $pagina == 'index') {
+        echo '<link rel="stylesheet" href="css/colorbox.css">';
+    } else if ($pagina == 'conferencia') {
+        echo '<link rel="stylesheet" href="css/lightbox.css">';
+    }
+
+    //  echo $archivo . "<br>";
+    //  echo $pagina;
 
     ?>
-   
-    
+
+
     <link rel="stylesheet" href="css/main.css">
 
 

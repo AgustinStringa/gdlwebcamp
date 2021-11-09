@@ -32,6 +32,9 @@ if (isset($_POST['agregar-evento'])) {
                 'respuesta' => 'incorrecto-no affecteds'
             );
         }
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $resultado = array(
             'respuesta' => 'incorrecto',
@@ -72,6 +75,9 @@ if (isset($_POST['editar-evento'])) {
             'respuesta' => 'exito',
             'modificados' => $modificados
         );
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $array = array(
             'respuesta' => 'incorrecto',
@@ -106,6 +112,9 @@ if (isset($_POST['id-deletable'])) {
                 'modificados' => $modificados
             );
         }
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $respuesta = array(
             'respuesta' => 'incorrecto',

@@ -27,6 +27,9 @@ if (isset($_POST['editar-categoria'])) {
                 'affected' => $stmt->affected_rows
             );
         }
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $respuesta = array(
             'error' => $e->getMessage(),
@@ -58,6 +61,9 @@ if (isset($_POST['id-deletable'])) {
                 'affected' => $stmt->affected_rows
             );
         }
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $respuesta = array(
             'respuestaE' => 'incorrecto',
@@ -96,6 +102,9 @@ if (isset($_POST['agregar-categoria'])) {
                 'stmt' => $stmt
             );
         }
+
+        $stmt->close();
+        $conn->close();
     } catch (Exception $e) {
         $respuesta = array(
             'respuesta' => 'incorrecto',
