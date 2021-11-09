@@ -74,10 +74,14 @@
   border-bottom: 1px solid #ebebeb;
   background-color: #f7f7f7;
 }
-.iconpicker-popover.popover .popover-title input[type=search].iconpicker-search {
+.iconpicker-popover.popover
+  .popover-title
+  input[type="search"].iconpicker-search {
   margin: 0 0 2px 0;
 }
-.iconpicker-popover.popover .popover-title-text ~ input[type=search].iconpicker-search {
+.iconpicker-popover.popover
+  .popover-title-text
+  ~ input[type="search"].iconpicker-search {
   margin-top: 12px;
 }
 .iconpicker-popover.popover .popover-content {
@@ -104,7 +108,7 @@
 .iconpicker-popover .popover-footer .iconpicker-btn {
   margin-left: 10px;
 }
-.iconpicker-popover .popover-footer input[type=search].iconpicker-search {
+.iconpicker-popover .popover-footer input[type="search"].iconpicker-search {
   /*width:auto;
     float:left;*/
   margin-bottom: 12px;

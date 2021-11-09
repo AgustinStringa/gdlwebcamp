@@ -25,11 +25,8 @@
     echo '<link rel="stylesheet" href="css/responsive.bootstrap4.min.css">';
   }
 
-  if ($cadena == 'crear-categoria.php') {
+  if ($cadena == 'crear-categoria.php' || $cadena == 'editar-categoria.php') {
     echo '<link rel="stylesheet" href="css/fontawesome-iconpicker.css">';
-
-    // echo '
-    // <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">';
   }
   ?>
 

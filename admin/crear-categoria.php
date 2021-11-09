@@ -34,7 +34,7 @@
                         <h3 class="card-title">Crear Categoría</h3>
                     </div>
                     <div class="card-body">
-                        <p>Crear una categoria para tus eventos desde aqui</p>
+                        <p>Crear una categoría para tus eventos desde aquí</p>
                         <form method="post" action="modelo-categorias.php" name="crear-categoria" id="crear-categoria">
                             <div class="card-body">
 

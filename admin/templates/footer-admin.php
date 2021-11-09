@@ -42,7 +42,7 @@ if ($cadena == 'lista-admin.php' || $cadena == 'lista-evento.php' || $cadena == 
   echo '<script src="js/buttons.colVis.min.js"></script>';
 }
 
-if ($cadena == 'crear-categoria.php') {
+if ($cadena == 'crear-categoria.php' || $cadena == 'editar-categoria.php') {
   echo '<script src="js/fontawesome-iconpicker.js"></script>';
 }
 ?>

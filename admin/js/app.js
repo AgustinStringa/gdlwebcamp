@@ -70,35 +70,6 @@ $(document).ready(function () {
         }
     }
 
-
-
-    // listaAdmins.click(function (e) {
-    //     e.preventDefault();
-    //     const enlace = e.target;
-    //     //eliminando
-    //     if (enlace.classList.contains('borrar_registro') || enlace.classList.contains('fa-trash-alt')) {
-    //         if (enlace.classList.contains('fa-trash-alt')) {
-    //             console.log(enlace.parentElement.href.slice(-11));
-    //         } else {
-    //             console.log(enlace.href.slice(-11));
-    //         }
-
-    //     }
-
-
-
-    //     //editando
-    //     if (enlace.classList.contains('editar_registro') || enlace.classList.contains('fa-edit')) {
-
-    //         if (enlace.classList.contains('fa-edit')) {
-    //             console.log(enlace.parentElement.href.slice(-11));
-    //         } else {
-    //             console.log(enlace.href.slice(-11));
-    //         }
-
-    //     }
-    // })
-
     function actualizarRegistroAdmin(e) {
         e.preventDefault();
         const datos = $(this).serializeArray();
@@ -371,15 +342,6 @@ $(document).ready(function () {
     }
 
 
-
-
-
-
-
-
-
-
-
     /***
     * =================EVENTOS=================
     */
@@ -450,11 +412,50 @@ $(document).ready(function () {
 
     //editanto categoria desde formulario
     if (document.querySelector('#editar-categoria')) {
+
         document.querySelector('#editar-categoria').addEventListener('submit', editarCategoria);
+        const inputs = document.querySelectorAll('form input');
+        inputs.forEach(input => {
+            input.style.color = '#007bff';
+        })
     }
 
     function editarCategoria(e) {
         e.preventDefault();
+        const dataEdicionCat = $(this).serializeArray();
+
+
+        $.ajax({
+            type: $(this).attr('method'),
+            data: dataEdicionCat,
+            url: $(this).attr('action'),
+            dataType: 'json',
+            success: function (datosRecibidos) {
+                //console.log(datosRecibidos);
+
+                if (datosRecibidos.respuesta == 'exito') {
+                    Swal.fire(
+                        'Categoría creada correctamente',
+                        `La categoria ahora se llama "${datosRecibidos.nuevo_nombre}"`,
+                        'success'
+                    )
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se ha podido crear la categoría, inténtalo nuevamente'
+                    });
+                }
+            },
+            beforeSend: function (data) {
+                //console.log(data)
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+        //ajax
+
     }
 
 
@@ -531,5 +532,7 @@ $(document).ready(function () {
     /***
     * =================CATEGORIAS=================
     */
+
+
 
 })
