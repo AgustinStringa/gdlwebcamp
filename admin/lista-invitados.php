@@ -4,7 +4,32 @@
 <?php include_once 'templates/barra-admin.php'; ?>
 <?php include_once 'templates/aside-admin.php'; ?>
 
+<!--estilos para tabla con imagenes-->
+<style>
+    tr img {
+        width: 200px;
+    }
 
+    .td-botones {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+    }
+
+    .td-botones a {
+        margin: 0 .5rem;
+    }
+
+    .table td:not(.td-description) {
+        text-align: center;
+    }
+
+    .td-description {
+        width: 40%;
+        text-align: justify;
+    }
+</style>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -15,9 +40,7 @@
                 <div class="col-sm-6">
                     <h1>Lista de Invitados</h1>
 
-                    <?php echo '<pre>';
-                    var_dump($_SESSION);
-                    echo '</pre>'; ?>
+
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -39,7 +62,8 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
+                                        <th>Descripción</th>
+                                        <th>Imagen</th>
                                         <?php if ($_SESSION["nivel"] == 1) { ?>
                                             <th>Acciones</th>
                                         <?php }; ?>
@@ -49,7 +73,7 @@
                                     <?php
 
                                     try {
-                                        $sql = 'SELECT id_admin, usuario, nombre FROM admins';
+                                        $sql = 'SELECT * FROM invitados';
                                         $resultado = $conn->query($sql);
                                     } catch (Exception $e) {
                                         $error = $e->getMessage();
@@ -58,18 +82,18 @@
                                     ?>
 
                                     <?php
-                                    while ($admin = $resultado->fetch_assoc()) { ?>
+                                    while ($invitado = $resultado->fetch_assoc()) { ?>
 
                                         <tr>
-                                            <td><?php echo $admin['usuario']; ?></td>
-                                            <td><?php echo  $admin['nombre']; ?></td>
-
+                                            <td><?php echo $invitado['nombre_invitado'] . ' ' . $invitado['apellido_invitado']; ?></td>
+                                            <td class="td-description"><?php echo  $invitado['descripcion_invitado']; ?></td>
+                                            <td><img src="../img/<?php echo $invitado['url_imagen'] ?>" alt="imagen invitado id: <?php echo $invitado['invitado_id'] ?>"></td>
                                             <?php if ($_SESSION["nivel"] == 1) { ?>
-                                                <td>
-                                                    <a class="btn btn-info editar_registro" href="editar-admin.php?id_admin=<?php echo $admin['id_admin'] ?>">
+                                                <td class="td-botones">
+                                                    <a class="btn btn-info editar_registro" href="editar-admin.php?id_invitado=<?php echo $invitado['invitado_id'] ?> ?>">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    <a class="btn btn-danger borrar_registro" href="#" data-tipo="admin" data_id="<?php echo $admin['id_admin']; ?>">
+                                                    <a class="btn btn-danger borrar_registro" href="admin-area.php" data-tipo="invitado" data_id="<?php echo $invitado['invitado_id'] ?>">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </a>
                                                 </td>
@@ -82,7 +106,8 @@
                                     <tr>
 
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
+                                        <th>Descripción</th>
+                                        <th>Imagen</th>
 
                                         <?php if ($_SESSION["nivel"] == 1) { ?>
                                             <th>Acciones</th>

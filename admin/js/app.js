@@ -461,14 +461,13 @@ $(document).ready(function () {
     //editando nombre de categoria desde pagina lsitas
     //const asd = document.querySelectorAll('.editar_registro_categoria');
 
-    /*    asd.forEach(a => {
+    /*  asd.forEach(a => {
             a.addEventListener('click', function (e) {
                 e.preventDefault();
                 const self = a;
                 const tr_padre = self.parentElement.parentElement;
     
                 for (elemento of tr_padre.children) {
-    
                     if (elemento.classList.contains('dtr-control')) {
                         const hijo_obj = elemento;
                         const id_editable = this.getAttribute('id-cat');
@@ -524,14 +523,75 @@ $(document).ready(function () {
                 }
             })
     
-        });*/
+        });
+    */
 
 
-    //LA ELIMINACION SE REALIZA DESDE EL METODO ELIMINAR REGISTRO
+    // LA ELIMINACION SE REALIZA DESDE EL METODO ELIMINAR REGISTRO
     /***
     * =================CATEGORIAS=================
     */
 
+    /***
+    * =================INVITADOS=================
+    */
+    if (document.querySelector('#guardar-registro-archivo')) {
+
+        document.querySelector('#guardar-registro-archivo').addEventListener('submit', guardarRegistroArchivo);
+
+        function guardarRegistroArchivo(e) {
+            e.preventDefault();
+
+            var tipo;
+            const datosNewGuest = new FormData(this);
+            if (datosNewGuest.has('agregar-invitado')) {
+                tipo = 'invitado';
+            }
+
+            console.log(...datosNewGuest);
+
+            $.ajax({
+                type: $(this).attr('method'),
+                data: datosNewGuest,
+                url: $(this).attr('action'),
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                async: true,
+                cache: false,
+                beforeSend: function (asd) {
+                    //console.log(asd);
+                },
+                success: function (datosEliminacion) {
+                    console.log(datosEliminacion);
+                    if (datosEliminacion.respuesta == 'exito') {
+                        if (tipo == 'invitado') {
+                            Swal.fire(
+                                'Bien pibe',
+                                `Llegaron los datos a PHP`,
+                                'success'
+                            );
+                            //tambien se puede hacer 
+                            // $([data-id="datosEliminacion.id-eliminado"]).remove()
+                        }
+
+
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            `No se ha podido eliminar el registro`,
+                            'error'
+                        );
+                    }
+
+                },
+                error: function (dataError) {
+                    // console.log(dataError);
+                }
+            })
+
+        }
+    }
 
 
 })

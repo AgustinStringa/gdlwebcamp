@@ -19,7 +19,7 @@
   <?php
   $cadena = $_SERVER['PHP_SELF'];
   $cadena = substr($cadena, 18);
-  if ($cadena == 'lista-admin.php' || $cadena == 'lista-evento.php' || $cadena == 'lista-invitados.php' || $cadena == 'lista-categorias.php') {
+  if ($cadena == 'lista-admin.php' || $cadena == 'lista-evento.php' || $cadena == 'lista-invitados.php' || $cadena == 'lista-categorias.php' || $cadena == 'lista-invitados.php') {
     echo '<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">';
     echo '<link rel="stylesheet" href="css/buttons.bootstrap4.min.css">';
     echo '<link rel="stylesheet" href="css/responsive.bootstrap4.min.css">';
