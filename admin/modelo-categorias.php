@@ -11,7 +11,7 @@ if (isset($_POST['editar-categoria'])) {
     $id_editable = $_POST['id-editable'];
 
     try {
-        $stmt = $conn->prepare("UPDATE categoria_evento SET cat_evento = ?, icono = ? WHERE id_categoria = $id_editable");
+        $stmt = $conn->prepare("UPDATE categoria_evento SET cat_evento = ?, icono = ?, editado = NOW() WHERE id_categoria = $id_editable");
         $stmt->bind_param('ss', $nuevo_nombre, $icono_categoria);
         $stmt->execute();
 

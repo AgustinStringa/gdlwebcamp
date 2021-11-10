@@ -432,11 +432,10 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (datosRecibidos) {
                 //console.log(datosRecibidos);
-
                 if (datosRecibidos.respuesta == 'exito') {
                     Swal.fire(
-                        'Categoría creada correctamente',
-                        `La categoria ahora se llama "${datosRecibidos.nuevo_nombre}"`,
+                        'Categoría editada correctamente',
+                        `La categoria "${datosRecibidos.nuevo_nombre}" se guardó correctamente`,
                         'success'
                     )
                 } else {
