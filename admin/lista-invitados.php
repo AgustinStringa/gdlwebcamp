@@ -87,10 +87,10 @@
                                         <tr>
                                             <td><?php echo $invitado['nombre_invitado'] . ' ' . $invitado['apellido_invitado']; ?></td>
                                             <td class="td-description"><?php echo  $invitado['descripcion_invitado']; ?></td>
-                                            <td><img src="../img/<?php echo $invitado['url_imagen'] ?>" alt="imagen invitado id: <?php echo $invitado['invitado_id'] ?>"></td>
+                                            <td><img src="../img/invitados/<?php echo $invitado['url_imagen'] ?>" alt="imagen invitado id: <?php echo $invitado['invitado_id'] ?>"></td>
                                             <?php if ($_SESSION["nivel"] == 1) { ?>
                                                 <td class="td-botones">
-                                                    <a class="btn btn-info editar_registro" href="editar-admin.php?id_invitado=<?php echo $invitado['invitado_id'] ?> ?>">
+                                                    <a class="btn btn-info editar_registro" href="editar-invitado.php?id_invitado=<?php echo $invitado['invitado_id'] ?>">
                                                         <i class="far fa-edit"></i>
                                                     </a>
                                                     <a class="btn btn-danger borrar_registro" href="admin-area.php" data-tipo="invitado" data_id="<?php echo $invitado['invitado_id'] ?>">

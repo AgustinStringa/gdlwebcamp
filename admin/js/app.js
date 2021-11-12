@@ -567,10 +567,12 @@ $(document).ready(function () {
                     if (datosEliminacion.respuesta == 'exito') {
                         if (tipo == 'invitado') {
                             Swal.fire(
-                                'Bien pibe',
-                                `Llegaron los datos a PHP`,
+                                'Perfecto',
+                                `El invitado ${datosEliminacion.nombre_invitado} se creó correctamente`,
                                 'success'
                             );
+
+                            $('#guardar-registro-archivo')[0].reset();
                             //tambien se puede hacer 
                             // $([data-id="datosEliminacion.id-eliminado"]).remove()
                         }
@@ -579,7 +581,7 @@ $(document).ready(function () {
                     } else {
                         Swal.fire(
                             'Error',
-                            `No se ha podido eliminar el registro`,
+                            `No se ha podido agregar el registro`,
                             'error'
                         );
                     }

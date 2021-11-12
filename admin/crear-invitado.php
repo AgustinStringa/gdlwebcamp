@@ -76,13 +76,13 @@
                         <form method="post" action="modelo-invitado.php" name="crear-invitado" id="guardar-registro-archivo" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usuario">Nombre:</label>
-                                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre del invitado">
+                                    <label for="nombre-invitado">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre-invitado" name="nombre-invitado" placeholder="Nombre del invitado">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="apellido">Apellido:</label>
-                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido del invitado">
+                                    <label for="apellido-invitado">Apellido:</label>
+                                    <input type="text" class="form-control" id="apellido-invitado" name="apellido-invitado" placeholder="Apellido del invitado">
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +97,7 @@
                                         <input name="imagen" type="file" class="custom-file-input" id="imagen">
                                         <label class="custom-file-label" for="imagen">Seleccionar Archivo</label>
                                     </div> -->
-                                    <input type="file" name="imagen" id="imagen">
+                                    <input type="file" name="imagen" id="imagen" accept="image/*">
                                 </div>
 
 

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
     //use strict para que javascript se ejecute en 'modo estricto'
 
@@ -6,7 +6,7 @@
     var regalo = document.getElementById('regalo');
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
 
         //comprobando que exista el elemento antes de hacer alguna accion
 
@@ -52,7 +52,10 @@
         var camisa_evento = document.getElementById('camisa_evento');
 
         //Deshabilitar boton de pagar para accionarle solo luego de haber apretado calcular
-        btnRegistro.disabled = true;
+        if (btnRegistro) {
+            btnRegistro.disabled = true;
+        }
+
 
 
         //agregando validacion para ejecutar las acciones de la pagina registro.html para que solo se ejecuten
@@ -314,7 +317,7 @@
 //UN EFI, PARA QUE SE EJECUTE SOLO UNA VEZ
 
 
-$(function() {
+$(function () {
 
 
     //animaciones para el texto h1
@@ -331,7 +334,7 @@ $(function() {
 
     function menuResponsive() {
         //MENU RESPONSIVE
-        $('.menu_movil').click(function() {
+        $('.menu_movil').click(function () {
 
             $('.navegacion_principal').slideToggle();
             //slide toggle es un metodo que alterna entre slideDown y slideUp
@@ -355,7 +358,7 @@ $(function() {
 
         //escuchador a la ventana cuando se realice la accion scroll
 
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             //esta variable guarda el scroll realizado desde arriba
             var scroll = $(window).scrollTop();
 
@@ -388,7 +391,7 @@ $(function() {
 
 
         // alert('la mia');
-        $('.menu_programa a').on('click', function() {
+        $('.menu_programa a').on('click', function () {
             //guardamos en la var el valor del href del enlace seleccionado
             //este href apunta a un div, que es el que queremos mostrar
             var enlaceSeleccionado = $(this).attr('href');
@@ -444,7 +447,7 @@ $(function() {
         //se reduce el código y se cambia .text por .html
 
 
-        $('.cuenta_regresiva').countdown('2022-2-24 00:00:00', function(event) {
+        $('.cuenta_regresiva').countdown('2022-2-24 00:00:00', function (event) {
             $('#dias').html(event.strftime('%D'));
             $('#horas').html(event.strftime('%H'));
             $('#minutos').html(event.strftime('%M'));
@@ -454,7 +457,10 @@ $(function() {
     }
 
     //COLORBOX
-    $('.invitado-info').colorbox({ inline: true, width: "50%" });
+    if (document.querySelector('.invitado-info')) {
+        $('.invitado-info').colorbox({ inline: true, width: "50%" });
+    }
+
 
 
 });
