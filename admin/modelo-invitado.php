@@ -69,3 +69,97 @@
 
     die(json_encode($respuesta));
 }
+?>
+
+<?php if (isset($_POST['editar-invitado'])) {
+    //imagen
+
+    $imagen = $_FILES['imagen'];
+    $url_actual = $_POST['url-actual'];
+    $imagen_error = $imagen['error'];
+    $imagen_name = $imagen['name'];
+    $imagen_size = $imagen['size'];
+    //resto
+    $nombre = $_POST['nombre-invitado'];
+    $apellido = $_POST['apellido-invitado'];
+    $descripcion = $_POST['descripcion'];
+    $id = $_POST['id-invitado'];
+
+    //comprobar que la imagen exista
+
+    $directorio = '../img/invitados/' . $imagen['name'];
+
+    if (file_exists($directorio)) {
+        //si existe no hace falta cargar en el servidor
+        $existe = true;
+        if ($imagen['name']) {
+            $imagen_url = $imagen['name'];
+        } else {
+            $imagen_url = $url_actual;
+        }
+    } else {
+        $existe = false;
+
+        //si no existe, tengo que crearlo en el servidor
+        if (move_uploaded_file($imagen['tmp_name'], $directorio)) {
+            $imagen_url = $imagen['name'];
+            $imagen_resultado = 'se subio correctamente';
+            $existe = true;
+        } else {
+            $respuesta = array(
+                'respuesta' => error_get_last()
+            );
+        }
+    }
+
+    try {
+        $stmt = $conn->prepare("UPDATE invitados set nombre_invitado = ?, apellido_invitado = ?, descripcion_invitado = ?, url_imagen = ?, editado = NOW() WHERE invitado_id = $id");
+        $stmt->bind_param('ssss', $nombre, $apellido, $descripcion, $imagen_url);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $respuesta = array(
+                'dir' => $directorio,
+                'existe' => $existe,
+                'imagen' => $imagen,
+                'imagen_url' => $imagen_url,
+                'imagen_resultado' => $imagen_resultado,
+                'respuesta' => 'exito',
+                'modificados' => $stmt->affected_rows,
+                'nombre_invitado' => $nombre
+            );
+        } else {
+            $respuesta = array(
+                'dir' => $directorio,
+                'existe' => $existe,
+                'imagen' => $imagen,
+                'imagen_url' => $imagen_url,
+                'imagen_resultado' => $imagen_resultado,
+                'respuesta' => 'error'
+            );
+        }
+    } catch (Exception $e) {
+        $respuesta = array(
+            'dir' => $directorio,
+            'existe' => $existe,
+            'imagen' => $imagen,
+            'imagen_url' => $imagen_url,
+            'imagen_resultado' => $imagen_resultado,
+            'respuesta' => 'error',
+            'error' => $e->getMessage()
+        );
+    }
+
+
+    // $respuesta = array(
+    //     'dir' => $directorio,
+    //     'existe' => $existe,
+    //     'imagen' => $imagen,
+    //     'imagen_url' => $imagen_url,
+    //     'imagen_resultado' => $imagen_resultado,
+    //     'respuesta' => 'exito'
+    // );
+
+    die(json_encode($respuesta));
+}
+?>

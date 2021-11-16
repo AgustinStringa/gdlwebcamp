@@ -595,5 +595,65 @@ $(document).ready(function () {
         }
     }
 
+    if (document.querySelector('#editar-registro-archivo')) {
+        document.querySelector('#editar-registro-archivo').addEventListener('submit', editarRegistroArchivo);
+
+        function editarRegistroArchivo(e) {
+            e.preventDefault();
+            //alert();
+
+            var tipo;
+            const datosEditGuest = new FormData(this);
+            if (datosEditGuest.has('editar-invitado')) {
+                tipo = 'invitado';
+            }
+
+            console.log(...datosEditGuest);
+
+            $.ajax({
+                type: $(this).attr('method'),
+                data: datosEditGuest,
+                url: $(this).attr('action'),
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                async: true,
+                cache: false,
+                beforeSend: function (asd) {
+                    //console.log(asd);
+                },
+                success: function (datosEliminacion) {
+                    console.log(datosEliminacion);
+                    if (datosEliminacion.respuesta == 'exito') {
+                        if (tipo == 'invitado') {
+
+                            Swal.fire(
+                                'Perfecto',
+                                `El invitado ${datosEliminacion.nombre_invitado} se editó correctamente`,
+                                'success'
+                            );
+
+                            //$('#guardar-registro-archivo')[0].reset();
+                            //tambien se puede hacer 
+                            // $([data-id="datosEliminacion.id-eliminado"]).remove()
+                        }
+
+
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            `No se ha podido agregar el registro`,
+                            'error'
+                        );
+                    }
+
+                },
+                error: function (dataError) {
+                    // console.log(dataError);
+                }
+            })
+
+        }
+    }
 
 })

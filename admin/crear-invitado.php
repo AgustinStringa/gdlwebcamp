@@ -6,45 +6,6 @@
 
 <?php include_once 'templates/aside-admin.php'; ?>
 
-<style>
-    .grupo-pass {
-        display: flex;
-        flex-direction: row;
-        column-gap: 1rem;
-        align-items: center;
-    }
-
-    .mostrar-pass {
-        color: #444444;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all .3s ease;
-        flex-basis: 7%;
-    }
-
-    .mostrar-pass:hover {
-        color: gray;
-    }
-
-    .alert {
-        margin-top: 1rem;
-        margin-bottom: 0;
-    }
-
-    .alert-success {
-        color: #356f54;
-        background-color: #d1e7dd;
-        border-color: #d0e7dd;
-    }
-
-    .alert-danger {
-        color: #9a2834;
-        background-color: #f8d7da;
-        border-color: #f6ccd0;
-
-    }
-</style>
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
