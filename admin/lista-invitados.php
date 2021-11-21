@@ -93,7 +93,7 @@
                                                     <a class="btn btn-info editar_registro" href="editar-invitado.php?id_invitado=<?php echo $invitado['invitado_id'] ?>">
                                                         <i class="far fa-edit"></i>
                                                     </a>
-                                                    <a class="btn btn-danger borrar_registro" href="admin-area.php" data-tipo="invitado" data_id="<?php echo $invitado['invitado_id'] ?>">
+                                                    <a class="btn btn-danger borrar_registro" href="admin-area.php" data-tipo="invitado" data_id="<?php echo $invitado['invitado_id'] ?>" data-img="../img/invitados/<?php echo $invitado['url_imagen'] ?>">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </a>
                                                 </td>

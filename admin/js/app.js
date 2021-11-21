@@ -124,10 +124,15 @@ $(document).ready(function () {
                     const self = e.target;
                     const id_deletable = self.getAttribute('data_id');
                     const tipo = self.getAttribute('data-tipo');
+                    const url_img_delete = self.getAttribute('data-img');
+                    //console.log(tipo);
 
                     //formdata
                     const datosDelete = new FormData();
                     datosDelete.append('id-deletable', id_deletable);
+                    datosDelete.append('url-img-delete', url_img_delete);
+
+
                     //console.log(...datosDelete);
 
                     $.ajax({
@@ -152,6 +157,9 @@ $(document).ready(function () {
                                     self.parentElement.parentElement.remove()
                                 }
                                 if (tipo == 'categorias') {
+                                    self.parentElement.parentElement.remove()
+                                }
+                                if (tipo == 'invitado') {
                                     self.parentElement.parentElement.remove()
                                 }
 

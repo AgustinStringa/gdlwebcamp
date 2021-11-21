@@ -163,3 +163,54 @@
     die(json_encode($respuesta));
 }
 ?>
+
+
+
+<?php if (isset($_POST['id-deletable'])) {
+    $id_deletable = $_POST['id-deletable'];
+    $url_img_delete = $_POST['url-img-delete'];
+
+    try {
+
+        //INTENTANDO BORRAR EL ARCHIVO DEL DIRECTORIO DEL SERVER
+        if (file_exists($url_img_delete)) {
+            if (unlink($url_img_delete)) {
+                $borrado = true;
+            } else {
+                $borrado = false;
+            }
+        } else {
+        }
+
+        $stmt = $conn->prepare('DELETE FROM invitados WHERE invitado_id = ?');
+        $stmt->bind_param('i', $id_deletable);
+        $stmt->execute();
+
+        $mods = $stmt->affected_rows;
+
+        if ($mods > 0) {
+            $response = array(
+                'respuesta' => 'exito',
+                'post' => $_POST
+            );
+        } else {
+            $response = array(
+                'respuesta' => 'no-mods',
+                'post' => $_POST
+            );
+        }
+    } catch (Exception $e) {
+        $response = array(
+            'respuesta' => 'error',
+            'error' => $e->getMessage()
+        );
+    }
+    $response = array(
+        'respuesta' => 'exito',
+        'el url de la imagen es' => $url_img_delete,
+        'borrado' => $borrado
+    );
+
+    die(json_encode($response));
+}
+?>
