@@ -22,7 +22,7 @@ echo '<link rel="stylesheet" href="css/select2.min.css"/>';
 
 echo  '<script src="js/select2.full.min.js"></script>';
 
-if ($cadena == 'lista-admin.php' || $cadena == 'lista-evento.php' || $cadena == 'lista-invitados.php' || $cadena == 'lista-categorias.php' || $cadena == 'lista-invitados.php') {
+if ($cadena == 'lista-admin.php' || $cadena == 'lista-evento.php' || $cadena == 'lista-invitados.php' || $cadena == 'lista-categorias.php' || $cadena == 'lista-invitados.php' || $cadena == 'lista-registrados.php') {
 
 
   echo '<script src="js/jquery.dataTables.min.js"></script>';

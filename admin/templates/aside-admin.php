@@ -142,13 +142,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="lista-registrados.php" class="nav-link">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Ver todos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="crear-registrado.php" class="nav-link">
                   <i class="fas fa-user-plus nav-icon"></i>
                   <p>Agregar</p>
                 </a>
